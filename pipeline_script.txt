@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+    stages {
+        stage('Git-checkout') {
+        steps {
+            echo "checking out from git repo";
+        }
+    }
+    stage('Build') {
+        steps {
+            echo "Build the checked out project";
+        }
+    }
+    stage('Unit-Test') {
+        steps {
+            echo "Running Junit Tests";
+        }
+    }
+    stage('Quality-Gate') {
+        steps {
+            echo "Verifying Quality Gates";
+        }
+    }
+stage('Deploy') {
+        steps {
+            echo "Deploying to stage environment for more tests";
+        }
+    }
+}
+
+    post {
+        always {
+            echo 'this will always run'
+        }
+        success {
+            echo 'this will run only if successful'
+        }
+        failure {
+            echo 'this will run only if failed'
+        }
+        unstable {
+            echo 'this will run if the run was marked as unstable'
+        }
+        changed {
+            echo 'this will run only if the state of the pipeline has changed'
+            echo 'for example, if the pipeline was previously failing but is now successful'
+        }
+        }
+    }
