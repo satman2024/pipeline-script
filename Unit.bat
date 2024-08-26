@@ -1,0 +1,1 @@
+echo "this is the unit of the project : %date% : %time%";
